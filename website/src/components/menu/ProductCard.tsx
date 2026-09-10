@@ -10,7 +10,12 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onOrderClick }: ProductCardProps) {
   return (
-    <div className="group bg-vanilla rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-cream/50">
+    <div 
+      onClick={() => onOrderClick(product)}
+      role="button"
+      tabIndex={0}
+      className="group bg-vanilla rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-cream/50 cursor-pointer text-left"
+    >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-cream">
         <Image
           src={product.image}
@@ -20,7 +25,11 @@ export function ProductCard({ product, onOrderClick }: ProductCardProps) {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
         {/* Hover overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+          <span className="bg-caramel text-white font-body font-semibold px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+            Customize Order
+          </span>
+        </div>
       </div>
 
       <div className="p-5 flex-1 flex flex-col">
@@ -39,26 +48,6 @@ export function ProductCard({ product, onOrderClick }: ProductCardProps) {
             {product.description}
           </p>
         </div>
-
-        <button
-          onClick={() => onOrderClick(product)}
-          className="w-full py-3 px-4 bg-transparent border-2 border-caramel text-black font-body font-semibold rounded-xl transition-all duration-200 hover:bg-caramel flex items-center justify-center gap-2 group/btn"
-        >
-          {product.category === "cakes" ? "Make it yours" : "Order now"}
-          <svg
-            className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
-            />
-          </svg>
-        </button>
       </div>
     </div>
   );
