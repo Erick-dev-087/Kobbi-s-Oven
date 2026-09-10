@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFAB } from "@/components/ui/WhatsAppFAB";
+import { Analytics } from "@vercel/analytics/next";
 
 const dmSerifDisplay = DM_Serif_Display({
   weight: "400",
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppFAB />
+        <Analytics />
       </body>
     </html>
   );
