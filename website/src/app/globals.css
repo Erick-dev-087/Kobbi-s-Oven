@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ─── Kobbi's Oven Design Tokens ─────────────────────────────── */
+
+:root {
+  --black: #111111;
+  --cream: #FFF8EE;
+  --vanilla: #FFFDF8;
+  --cocoa: #5A3825;
+  --caramel: #D99A4A;
+  --peach: #F3B59B;
+
+  --background: var(--cream);
+  --foreground: var(--black);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-black: #111111;
+  --color-cream: #FFF8EE;
+  --color-vanilla: #FFFDF8;
+  --color-cocoa: #5A3825;
+  --color-caramel: #D99A4A;
+  --color-peach: #F3B59B;
+  --color-caramel-dark: #C4882E;
+  --color-caramel-light: #E8B574;
+
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+  --font-logo: "Lobster", "DM Serif Display", cursive;
+
+  /* Animation timing tokens */
+  --ease-micro: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Base Styles ────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--black);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Logo script font — mirrors the KoBBi's Oven brand lettering */
+.font-logo {
+  font-family: var(--font-logo);
+  font-weight: 400;
+}
+
+/* Hero image cream-blend — feathers the white photo bg into cream */
+.hero-img-blend {
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at 50% 50%, black 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 88% at 50% 50%, black 55%, transparent 100%);
+  background-color: var(--cream);
+}
+
+/* ─── Selection ──────────────────────────────────────────────── */
+
+::selection {
+  background-color: var(--caramel);
+  color: var(--black);
+}
+
+/* ─── Focus Styles ───────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--caramel);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cocoa);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--black);
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Signature Curve Underline ──────────────────────────────── */
+
+.signature-curve {
+  position: relative;
+  display: inline-block;
+}
+
+.signature-curve::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 10%;
+  width: 80%;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M10 15 Q50 0 100 10 Q150 20 190 5' fill='none' stroke='%23D99A4A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+}
+
+/* ─── Section Alternating Backgrounds ─────────────────────────── */
+
+.section-cream {
+  background-color: var(--cream);
+}
+
+.section-vanilla {
+  background-color: var(--vanilla);
+}
+
+.section-black {
+  background-color: var(--black);
+  color: var(--cream);
+}
+
+/* ─── CTA Button Styles ──────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background-color: var(--caramel);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 9999px;
+  transition: all 250ms var(--ease-smooth);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--caramel-dark, #C4882E);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(217, 154, 74, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background-color: transparent;
+  color: var(--black);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--black);
+  transition: all 250ms var(--ease-smooth);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--black);
+  color: var(--cream);
+}
+
+.btn-secondary-light {
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.btn-secondary-light:hover {
+  background-color: var(--cream);
+  color: var(--black);
+}
