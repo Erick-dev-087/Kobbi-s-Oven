@@ -1,0 +1,59 @@
+# Vercel Web Analytics Installation Report
+
+## Summary
+Successfully installed and configured Vercel Web Analytics for the Kobbi's Oven Next.js website following the official Vercel documentation.
+
+## Implementation Details
+
+### 1. Documentation Retrieved
+Fetched the latest installation instructions from https://vercel.com/docs/analytics/quickstart to ensure using the most up-to-date implementation approach.
+
+### 2. Package Installation
+- Installed `@vercel/analytics` package (version compatible with Next.js 16.3.4)
+- Used npm as the package manager (existing package-lock.json identified)
+- Added 384 packages with no vulnerabilities detected
+
+### 3. Code Changes
+
+#### Modified Files:
+
+**website/package.json**
+- Added `@vercel/analytics` to dependencies
+
+**website/package-lock.json**
+- Updated with new dependency tree for @vercel/analytics
+
+**website/src/app/layout.tsx**
+- Added import: `import { Analytics } from "@vercel/analytics/next";`
+- Added `<Analytics />` component at the end of the body section
+- Follows Next.js App Router best practices by placing Analytics in the root layout
+
+### 4. Framework-Specific Implementation
+This project uses Next.js with the App Router pattern, so the Analytics component was added to:
+- **File**: `src/app/layout.tsx` (root layout)
+- **Location**: Inside the `<body>` tag, after all content components
+- **Import**: Used the Next.js-specific import from `@vercel/analytics/next`
+
+### 5. Verification Steps Completed
+✅ Build completed successfully with no errors
+✅ TypeScript compilation passed
+✅ Static pages generated (9/9 routes)
+✅ Linter ran successfully (no errors in modified files)
+✅ Pre-existing lint issues in other files remain unchanged
+
+### 6. Next Steps for Deployment
+To complete the Vercel Web Analytics setup:
+1. Enable Web Analytics in the Vercel dashboard (Analytics section)
+2. Deploy the application to Vercel
+3. View analytics data in the Vercel dashboard after users visit the site
+
+## Files Changed
+- `website/package.json` - Added @vercel/analytics dependency
+- `website/package-lock.json` - Updated lock file with new dependencies
+- `website/src/app/layout.tsx` - Added Analytics component to root layout
+
+## Notes
+- The implementation follows the official Vercel documentation for Next.js App Router
+- No existing functionality was affected
+- All code style and formatting conventions were preserved
+- The Analytics component will automatically track page views and visitor data once deployed to Vercel
